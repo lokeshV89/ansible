@@ -1,0 +1,17 @@
+---
+- name: basic loop example
+  hosts: all
+  vars:
+    services:
+      - httpd
+      - sshd
+      - firewalld
+  tasks:
+    - name: loop through variables
+      shell:
+        cmd: "echo {{services[1]}}"
+      register: output
+      loop: "{{services}}" 
+    - debug: 
+        msg: "{{item.stdout_lines}}"
+      loop: "{{output['results']}}"

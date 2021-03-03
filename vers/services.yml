@@ -1,0 +1,3 @@
+service: firewalld
+service: sshd
+service: httpd

@@ -1,0 +1,18 @@
+---
+- name: loop example
+  hosts: all
+  vars:
+    services:
+      - httpd
+      - firewalld
+      - sshd
+  tasks:
+    - service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+        # register: output
+      loop: "{{services}}"
+      #- debug: 
+      # msg: "{{item.stdout}}"
+      #loop: "{{output['results']}}"
